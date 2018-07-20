@@ -1,0 +1,8 @@
+__legacy
+__pycache__
+build/
+dist/
+test/renamed
+test/uniformity
+test/unnamed
+mriqa.egg-info

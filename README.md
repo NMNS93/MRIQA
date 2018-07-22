@@ -11,7 +11,7 @@ python setup.py install
 ## Usage
 
 ### mriqa
-Wrapper script for the MRI QA software modules. Passes command line arguments to the relevant modules. Used by the graphical user interface to run the software.
+Wrapper script for the MRI QA software modules. Passes command line arguments to the relevant modules. Used by the graphical user interface to run the software. Note that all modules take an optional config file as an argument. The default file used can be located at '/mriqa/data/config.ini'.
 ```
 usage: mriqa [-h] module args
 
@@ -19,7 +19,7 @@ optional arguments:
   module          name of MRI quality assurance module to run: [all, rename, uniformity]
   args            command line arguments to be passed to downstream module
       -i indir    directory containing DICOM files 
-      -c config   config file with regular expressions for validating DICOM Series Description
+      -c config   OPTIONAL: config file with regular expressions for validating DICOM Series Description
   -h, --help  show this help message and exit
   -v          show program's version number and exit
 ```
@@ -32,13 +32,13 @@ The GUI is invoked by calling `mriqagui` from the command line.
 ### rename
 Rename DICOM images by validating strings in the DICOM Series Description tag.
 ```
-usage: mriqa rename [-h] -i indir -c config [-v]
+usage: mriqa rename [-h] -i indir [-c config] [-v]
 ```
 
 ### uniformity
 Calculate the fractional uniformity of ROI profiles. Input directory must have been processed by `mriqa rename`. 
 ```
-usage: mriqa uniformity [-h] -i indir -c config [-v]
+usage: mriqa uniformity [-h] -i indir [-c config] [-v]
 ```
 
 ## Development
@@ -51,7 +51,7 @@ The gui is called by the script 'mriqa/gui.py' and launched by the command `mriq
 The config file found in 'data/config.ini' contains configuration settings for different modules. To update the settings, such as filename search strings, edit this file and repeat the installation step.
 
 ### Adding new modules
-Scripts can be added to the package in a modular fashion. These new modules should be placed in the 'mriqa/' directory and contain a main function that takes the command line arguments (as *args* in `mriqa.py`):
+Scripts can be added to the package in a modular fashion. These new modules should be placed in the 'mriqa/' directory and define a main() function that takes the command line arguments as *args* (see example in `rename.py`):
 ```
 def main(args):
     ....

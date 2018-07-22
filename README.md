@@ -11,7 +11,7 @@ python setup.py install
 ## Usage
 
 ### mriqa
-Wrapper script for the MRI QA software modules. Passes command line arguments to the relevant modules. Used by the graphical user interface to run the software. Note that all modules take an optional config file as an argument. The default file used can be located at '/mriqa/data/config.ini'.
+Wrapper script for the MRI QA software modules. Passes command line arguments to the relevant modules. Used by the graphical user interface to run the software.
 ```
 usage: mriqa [-h] module args
 
